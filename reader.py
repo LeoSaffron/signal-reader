@@ -11,9 +11,9 @@ from binance.client import Client
 import re
 from glob import glob
 import pickle
+import datetime
 from datetime import datetime
 import os
-import re
 import os.path
 from time import sleep
 
@@ -26,7 +26,7 @@ driver.maximize_window()
 #    driver.add_cookie(cookie)
 driver.get("https://web.telegram.org")
 
-time.sleep(20)
+time.implicitly_wait(20)
 driver.find_elements_by_class_name("nav-stacked")[0].find_element_by_xpath('//span[text()="testgroup"]').click()
 
 pattern_whitelist_path = "patterns_whitelist/"
@@ -34,6 +34,7 @@ path_unidentified_pattern_messages = "unknown_patterns/"
 path_output_signal_file = "sample_log_folder/sample_log.txt"
 pattern_list = []
 last_message_text = ''
+chat_name = "Test22"
 
 signal_list = []
 emoji_V = '✅'
@@ -54,6 +55,27 @@ patterns_blacklist_single_lines = {
         'Book half gain here and move stop loss to breakeven',
         }
 
+off_the_record_custom_regex = [
+        'OFF_THE_RECORD_REGEX_MULTIPLE_LINES_FOR_NEXT_PATTERN'
+        ]
+
+def refresh_page():
+    driver.get("https://web.telegram.org")
+    time.sleep(5)
+    driver.implicitly_wait(30)
+    el = driver.find_element_by_id("LeftColumn-main").find_element_by_xpath('//h3[text()="' + chat_name + '"]')
+    action = webdriver.common.action_chains.ActionChains(driver)
+    action.move_to_element_with_offset(el, 0, 0)
+    action.click()
+    action.perform()
+    time.sleep(10)
+    down_arrow_elements = driver.find_elements_by_xpath('//i[contains(@class, "icon-arrow-dow")]')
+    if len(down_arrow_elements) > 0:
+        try:
+            down_arrow_elements[0].click()
+            time.sleep(3)
+        except:
+            pass
 
 def check_if_str_regex_pattern(pattern_to_check):
     try:
@@ -171,7 +193,7 @@ def message_check_fits_regex_specific_pattern(element, pattern):
         flag_line_custom_pattern_work = False
         flag_read_multiple_lines = False
 #        print(index_in_lines_list, index_in_pattern_list) 
-        if (pattern[index_in_pattern_list] in off_the_record_cusom_regex):
+        if (pattern[index_in_pattern_list] in off_the_record_custom_regex):
             flag_line_custom_pattern_work = True
             if(pattern[index_in_pattern_list] == 'OFF_THE_RECORD_REGEX_MULTIPLE_LINES_FOR_NEXT_PATTERN'):
                 flag_read_multiple_lines = True
@@ -210,7 +232,7 @@ def message_check_fits_regex_specific_pattern_by_text_lines(lines, pattern):
         flag_line_custom_pattern_work = False
         flag_read_multiple_lines = False
 #        print(index_in_lines_list, index_in_pattern_list) 
-        if (pattern[index_in_pattern_list] in off_the_record_cusom_regex):
+        if (pattern[index_in_pattern_list] in off_the_record_custom_regex):
             flag_line_custom_pattern_work = True
             if(pattern[index_in_pattern_list] == 'OFF_THE_RECORD_REGEX_MULTIPLE_LINES_FOR_NEXT_PATTERN'):
                 flag_read_multiple_lines = True
@@ -428,7 +450,7 @@ def message_parse_by_identified_pattern(element, pattern):
 
 def save_signal_to_log_file(signal, path_logfile):
     if (not (signal == '')):
-        time_now = datetime.now()
+        time_now = datetime.datetime.now()
         time_now_date = time_now.strftime("%Y-%m-%d")
         time_now_time = time_now.strftime("%H-%M-%S")
         file_object = open(path_logfile, 'a')
@@ -471,7 +493,7 @@ def process_message_element(element, verbose = 0):
         if (verbose >= 1):
             print('undentified pattern')
         unidentified_message = element.text.split('\n')[:-2]
-        filepath_unidentified = path_unidentified_pattern_messages + datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
+        filepath_unidentified = path_unidentified_pattern_messages + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
         file=open(filepath_unidentified,'w')
         for message_items in unidentified_message:
             file.writelines(message_items+'\n')
@@ -517,7 +539,7 @@ def process_message_element_text_lines(lines, verbose = 0):
         if (verbose >= 1):
             print('undentified pattern')
         unidentified_message = element.text.split('\n')[:-2]
-        filepath_unidentified = path_unidentified_pattern_messages + datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
+        filepath_unidentified = path_unidentified_pattern_messages + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
         file=open(filepath_unidentified,'w')
         for message_items in unidentified_message:
             file.writelines(message_items+'\n')
@@ -536,11 +558,18 @@ pattern_list = init_pattern_list(pattern_whitelist_path)
 #driver.find_element_by_xpath("//div[@class='Message message-list-item last-in-group last-in-list own open shown']")
 lastmessage = get_last_message_from_opened_chat_text_only(driver)
 message_last_element = get_last_message_from_opened_chat_full_element(driver)
+message_last_element_text = message_last_element.text
+last_refreshed_time = datetime.datetime.now()
 while (True):
+    time_now = datetime.datetime.now()
+    if time_now - last_refreshed_time > datetime.timedelta(minutes=1):
+        refresh_page()
+        last_refreshed_time = time_now
     message_new_element = get_last_message_from_opened_chat_full_element(driver)
-    if (not (message_last_element.text == message_new_element.text)):
+    if (not (message_last_element_text == message_new_element.text)):
         process_message_element(message_new_element, verbose = 1)
         message_last_element = message_new_element
+        message_last_element_text = message_last_element.text
     sleep(1)
 
 
