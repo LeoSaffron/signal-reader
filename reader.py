@@ -42,11 +42,18 @@ emoji_V = '✅'
 
 emoji_cool_face = '😎'
 
+emoji_x_multiply = '×'
+
 list_emojis_blacklist = {
         emoji_V,
         
         emoji_cool_face
         }
+
+dict_chars_replace = {
+        '×' : 'x'
+        }
+
 #Message message-list-item first-in-group last-in-group last-in-list
 #Message message-list-item last-in-group last-in-list open shown
 
@@ -205,7 +212,10 @@ def get_lines_in_message_element(element):
     for line_to_copy in element_text_arr[:-1]:
         if (line_to_copy == ''):
             continue
-        lines_relevant.append(line_to_copy.strip())
+        line = line_to_copy.strip()
+        for key in dict_chars_replace:
+            line = line.replace(key, dict_chars_replace[key])
+        lines_relevant.append(line)
     return lines_relevant
 
 def message_check_fits_regex_specific_pattern(element, pattern):
@@ -732,7 +742,7 @@ def process_message_element_text_lines(lines, verbose = 0):
             print('undentified pattern')
         unidentified_message = lines
         filepath_unidentified = path_unidentified_pattern_messages + datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") + '.txt'
-        file=open(filepath_unidentified,'w')
+        file=open(filepath_unidentified,'w', encoding="utf-8")
         for message_items in unidentified_message:
             file.writelines(message_items+'\n')
         file.close()
