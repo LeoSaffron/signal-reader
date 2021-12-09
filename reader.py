@@ -71,8 +71,11 @@ def refresh_page():
     driver.get("https://web.telegram.org")
     time.sleep(5)
     driver.implicitly_wait(30)
-#    el = driver.find_element_by_id("LeftColumn-main").find_element_by_xpath('//h3[text()="' + chat_name + '"]')
-    el = driver.find_element_by_xpath('//span[text()="' + chat_name + '"]')
+    el = None
+    try:
+        el = driver.find_element_by_id("LeftColumn-main").find_element_by_xpath('//h3[text()="' + chat_name + '"]')
+    except:
+        el = driver.find_element_by_xpath('//span[text()="' + chat_name + '"]')
     action = webdriver.common.action_chains.ActionChains(driver)
     action.move_to_element_with_offset(el, 0, 0)
     action.click()

@@ -1,0 +1,64 @@
+1639078936529	geckodriver	INFO	Listening on 127.0.0.1:65325
+1639078939536	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\scipio\\AppData\\Local\\Temp\\rust_mozprofileEkpe7I"
+1639078939808	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\scipio\\AppData\\Local\\Temp\\rust_mozprofileEkpe7I\\search.json.mozlz4", (void 0)))
+1639078941671	Marionette	INFO	Listening on port 65335
+1639078941837	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1639078942959	Marionette	INFO	Stopped listening on port 65335
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1639079062849	geckodriver	INFO	Listening on 127.0.0.1:65447
+1639079065866	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\scipio\\AppData\\Local\\Temp\\rust_mozprofile4kihqn"
+1639079066097	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\scipio\\AppData\\Local\\Temp\\rust_mozprofile4kihqn\\search.json.mozlz4", (void 0)))
+1639079067838	Marionette	INFO	Listening on port 65457
+1639079067913	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1639079400565	Marionette	INFO	Stopped listening on port 65457
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1639079405039	geckodriver	INFO	Listening on 127.0.0.1:49455
+1639079408048	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\scipio\\AppData\\Local\\Temp\\rust_mozprofilej2Beui"
+1639079408279	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\scipio\\AppData\\Local\\Temp\\rust_mozprofilej2Beui\\search.json.mozlz4", (void 0)))
+1639079409852	Marionette	INFO	Listening on port 49465
+1639079410077	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.telegram.org/js/app.js, line 20: asm.js type error: duplicate name 'n' not allowed
+JavaScript warning: https://web.telegram.org/js/app.js, line 31: asm.js type error: numeric literal out of representable integer range
+JavaScript warning: https://web.telegram.org/js/app.js, line 36: asm.js type error: fixnum is not a subtype of double? or floatish
+JavaScript warning: https://web.telegram.org/js/app.js, line 53: asm.js type error: double is not a subtype of int
+JavaScript warning: https://web.telegram.org/js/app.js, line 20: asm.js type error: duplicate name 'n' not allowed
+JavaScript warning: https://web.telegram.org/js/app.js, line 31: asm.js type error: numeric literal out of representable integer range
+JavaScript warning: https://web.telegram.org/js/app.js, line 36: asm.js type error: fixnum is not a subtype of double? or floatish
+JavaScript warning: https://web.telegram.org/js/app.js, line 53: asm.js type error: double is not a subtype of int
+1639079476958	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+JavaScript warning: https://web.telegram.org/js/app.js, line 0: asm.js type error: Asm.js optimizer disabled because no suitable wasm compiler is available
+JavaScript warning: https://web.telegram.org/js/app.js, line 0: asm.js type error: Asm.js optimizer disabled because no suitable wasm compiler is available
+JavaScript warning: https://web.telegram.org/js/app.js, line 0: asm.js type error: Asm.js optimizer disabled because no suitable wasm compiler is available
+JavaScript warning: https://web.telegram.org/js/app.js, line 0: asm.js type error: Asm.js optimizer disabled because no suitable wasm compiler is available
+1639079849079	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+console.warn: "Error while destroying front:" "accessibility" (new Error("Connection closed, pending request to server0.conn1.windowGlobal2147483654/accessibilityActor14, type getSimulator failed\n\nRequest stack:\nrequest@resource://devtools/shared/protocol/Front.js:292:14\ngenerateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:46:19\ninitialize@resource://devtools/client/fronts/accessibility.js:534:39\n", "resource://devtools/shared/protocol/Front.js", 106))
+JavaScript error: resource://devtools/shared/protocol/Front.js, line 106: Error: Connection closed, pending request to server0.conn1.windowGlobal2147483654/accessibilityActor14, type getSimulator failed
+
+Request stack:
+request@resource://devtools/shared/protocol/Front.js:292:14
+generateRequestMethods/</frontProto[name]@resource://devtools/shared/protocol/Front/FrontClassWithSpec.js:46:19
+initialize@resource://devtools/client/fronts/accessibility.js:534:39
+
+console.error: 
+  InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment: sendPacket@resource://devtools/server/connectors/js-window-actor/DevToolsFrameChild.jsm:437:10
+send@resource://devtools/shared/transport/js-window-actor-transport.js:53:25
+_getOrCreateActor@resource://devtools/server/devtools-server-connection.js:217:22
+onPacket@resource://devtools/server/devtools-server-connection.js:362:24
+_onPacketReceived@resource://devtools/shared/transport/js-window-actor-transport.js:48:18
+emit@resource://gre/modules/EventEmitter.jsm:160:20
+receiveMessage@resource://devtools/server/connectors/js-window-actor/DevToolsFrameChild.jsm:513:21
+
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
